@@ -18,6 +18,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+        source-url: https://nuget.pkg.github.com/tailspin-test/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install dependencies for all projects
       run: dotnet restore
@@ -39,19 +42,9 @@ jobs:
     # Pack and publish logic package
     - name: Pack logic package
       run: dotnet pack ${{ github.workspace }}/AnimalAdoption.Common.Logic/AnimalAdoption.Common.Logic.csproj --no-build --configuration Release --output ./taa-common-logic/
-      
-    - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
-
-    - name: Add GPR NuGet source
-      run: nuget source add -Name "GitHub" -Source "https://nuget.pkg.github.com/jacobcheatley/index.json" -UserName jacobcheatley -Password ${{ secrets.GH_PACKAGES_PAT }}
-
-    - name: Set NuGet API key
-      run: nuget setApiKey ${{ secrets.GH_PACKAGES_PAT }} -Source "GitHub"
-
-    - name: Push NuGet package
-      run: nuget push *.nupkg -Source "GitHub" -SkipDuplicate
-      working-directory: ./taa-common-logic/
+    
+    - name: Push logic package
+      run: dotnet nuget push ./taa-common-logic/**/*.pkg --skip-duplicate
 
     # Publish and build portal
     - name: Publish portal project in Release mode
