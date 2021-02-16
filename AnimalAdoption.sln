@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portal", "Portal", "{0D62B6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{CE923B50-C0C0-48CE-B00E-FAFCD96DF11E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7E236191-D333-425A-9F66-5A02AE433E57}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.Common.Logic", "AnimalAdoption.Common.Logic\AnimalAdoption.Common.Logic.csproj", "{654E5363-D422-4802-A709-4B1A1F592BDE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.Web.Portal", "AnimalAdoption.Web.Portal\AnimalAdoption.Web.Portal.csproj", "{82D36429-1D1A-4EB9-B4AC-72B439A486E1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7E236191-D333-425A-9F66-5A02AE433E57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.Web.Portal.UnitTests", "AnimalAdoption.Web.Portal.UnitTests\AnimalAdoption.Web.Portal.UnitTests.csproj", "{6D2DD17F-6E26-4BA5-95B2-45C9A21E1F3D}"
 EndProject
