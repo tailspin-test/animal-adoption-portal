@@ -34,10 +34,10 @@ jobs:
           ls -R
           
     - name: Run unit tests
-      run: dotnet test ${{ github.workspace }}\AnimalAdoption.Web.Portal.UnitTests\AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal --configuration Release
+      run: dotnet test ${{ github.workspace }}/AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal --configuration Release
      
     - name: Publish portal project in Release mode
-      run: dotnet publish ${{ github.workspace }}\AnimalAdoption.Web.Portal\AnimalAdoption.Web.Portal.csproj --configuration Release --no-build --output ./taa-portal/
+      run: dotnet publish ${{ github.workspace }}/AnimalAdoption.Web.Portal/AnimalAdoption.Web.Portal.csproj --configuration Release --no-build --output ./taa-portal/
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.1.3
