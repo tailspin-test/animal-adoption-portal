@@ -44,7 +44,7 @@ jobs:
       run: dotnet pack ${{ github.workspace }}/AnimalAdoption.Common.Logic/AnimalAdoption.Common.Logic.csproj --no-build --configuration Release
     
     - name: Push logic package
-      run: dotnet nuget push ${{ github.workspace }}/AnimalAdoption.Common.Logic/**/*.pkg --skip-duplicate
+      run: dotnet nuget push ${{ github.workspace }}/AnimalAdoption.Common.Logic/**/*.nupkg --skip-duplicate
 
     # Publish and build portal
     - name: Publish portal project in Release mode
