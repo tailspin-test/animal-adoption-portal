@@ -81,15 +81,19 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
     
+    - name: Get Key Vault secrets
+      id: keyvault
+      uses: azure/get-keyvault-secrets@v1
+      with:
+        keyvault: ${{ secrets.KEY_VAULT_NAME }}
+        secrets: GlobalPassword, SimulatedFailureChance
+    
     - name: Configure App
       uses: azure/appservice-settings@v1
       id: settings
       with:
         app-name: ${{ secrets.APP_NAME }}
-        app-settings-json: ${{ secrets.APP_SETTINGS }}
-
-    - name: Display URL
-      run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}"
+        app-settings-json: '[{"name": "GlobalPassword", "value": "${{ steps.keyvault.outputs.GlobalPassword }}", "slotSetting": false}, {"name": "SimulatedFailureChance", "value": "${{ steps.keyvault.outputs.SimulatedFailureChance }}", "slotSetting": false}]'
     
     - name: Logout
       run: az logout
