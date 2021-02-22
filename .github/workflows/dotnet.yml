@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -56,3 +55,23 @@ jobs:
         name: drop
         path:  ${{ github.workspace }}/taa-portal/
         if-no-files-found: error
+        
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Test
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: drop
+        path: drop
+    
+    - name: Deploy to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: dotnet-app
+        package: drop
+        publish-profile: ${{ secrets.PUBLISH_PROFILE_SETTINGS }}
